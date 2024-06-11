@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Associate {
+  id               String   @id @default(uuid())
+  name             String
+  rg               String
+  emissor          String
+  rg_uf            String
+  shipping_date    String
+  naturalness      String
+  naturalness_uf   String
+  address          String
+  email_data       String
+  profession       String
+  education        String
+  specialization   String
+  email_profession String
+  acting           String
+  avatar           String?
+  created_at       DateTime @default(now())
+  updated_at       DateTime @default(now())
+  valid            Int
+  visible          Boolean  @default(true)
+  cpf              String
+  birthDate        String
+  phone            String
+  affiliation      String
+  city             String
+  state            String
+  cep              String
+  oab              String
+  User             User?    @relation(fields: [user_id], references: [id])
+  user_id          String?
+
+  @@map("associates")
+}
+
+model Course {
+  id          String   @id @default(uuid())
+  link        String
+  title       String
+  description String
+  avatar      String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+  User        User?    @relation(fields: [user_id], references: [id])
+  user_id     String?
+
+  @@map("course")
+}
+
+model User {
+  id         String      @id @default(uuid())
+  name       String
+  email      String
+  password   String
+  created_at DateTime    @default(now())
+  updated_at DateTime    @default(now())
+  associates Associate[]
+  course     Course[]
+
+  @@map("users")
+}
