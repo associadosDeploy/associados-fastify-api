@@ -64,5 +64,5 @@ app.register(authenticateWithPassword)
 app.register(createUser)
 
 app.listen({ port: env.PORT }).then(() => {
-  console.log('Server is listening on port 3333')
+  console.log(`Server is listening on port ${env.PORT}`)
 })
