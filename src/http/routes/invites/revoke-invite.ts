@@ -35,8 +35,9 @@ export async function revokeInvite(app: FastifyInstance) {
         const { slug, inviteId } = request.params
 
         const userId = await request.getCurrentUserId()
-        const { organization, membership } =
-          await request.getUserMembership(slug)
+        const { organization, membership } = await request.getUserMembership(
+          slug,
+        )
 
         const { cannot } = getUserPermissions(userId, membership.role)
 

@@ -44,8 +44,9 @@ export async function getOrganizationBilling(app: FastifyInstance) {
       async (request) => {
         const { slug } = request.params
         const userId = await request.getCurrentUserId()
-        const { organization, membership } =
-          await request.getUserMembership(slug)
+        const { organization, membership } = await request.getUserMembership(
+          slug,
+        )
 
         const { cannot } = getUserPermissions(userId, membership.role)
 

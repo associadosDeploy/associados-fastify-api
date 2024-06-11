@@ -48,8 +48,9 @@ export async function getProject(app: FastifyInstance) {
         const { orgSlug, projectSlug } = request.params
 
         const userId = await request.getCurrentUserId()
-        const { organization, membership } =
-          await request.getUserMembership(orgSlug)
+        const { organization, membership } = await request.getUserMembership(
+          orgSlug,
+        )
 
         const { cannot } = getUserPermissions(userId, membership.role)
 

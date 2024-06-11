@@ -34,8 +34,9 @@ export async function transferOrganization(app: FastifyInstance) {
       async (request, reply) => {
         const userId = await request.getCurrentUserId()
         const { slug } = request.params
-        const { membership, organization } =
-          await request.getUserMembership(slug)
+        const { membership, organization } = await request.getUserMembership(
+          slug,
+        )
 
         const authOrganization = organizationSchema.parse(organization)
 
