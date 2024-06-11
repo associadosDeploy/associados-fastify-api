@@ -1,8 +1,8 @@
 import type { FastifyInstance } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 
-import { prisma } from '@/lib/prisma'
-import { env } from '@/env'
+import { prisma } from '../../../lib/prisma'
+import { env } from '../../../env'
 import { z } from 'zod'
 import { BadRequestError } from '../_errors/bad-request-error'
 
