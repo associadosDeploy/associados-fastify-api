@@ -16,6 +16,18 @@ export async function getFreeCourse(app: FastifyInstance) {
           id: z.string(),
         }),
         summary: 'Get all courses',
+        response: {
+          200: z.object({
+            id: z.string().uuid(),
+            link: z.string().url(),
+            title: z.string(),
+            description: z.string(),
+            created_at: z.date(),
+            updated_at: z.date(),
+            user_id: z.string().nullable(),
+            avatar: z.string().nullable(),
+          }),
+        },
       },
     },
     async (request, reply) => {

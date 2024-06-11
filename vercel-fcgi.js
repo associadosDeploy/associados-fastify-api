@@ -1,5 +1,5 @@
 const fastify = require('fastify')
-const app = require('./build/app') // Importe o arquivo principal da sua aplicação Fastify
+const app = require('./build/http/server') // Importe o arquivo principal da sua aplicação Fastify
 
 // Crie uma instância Fastify
 const server = fastify({ logger: true })
