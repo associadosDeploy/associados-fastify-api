@@ -19,7 +19,7 @@ import { authenticateWithPassword } from './routes/auth/authenticate-with-passwo
 import { createUser } from './routes/users/create-user'
 import { errorHandler } from './error-handler'
 
-const app = fastify().withTypeProvider<ZodTypeProvider>()
+export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
@@ -62,7 +62,3 @@ app.register(getFreeCourse)
 
 app.register(authenticateWithPassword)
 app.register(createUser)
-
-app.listen({ port: env.PORT }).then(() => {
-  console.log(`Server is listening on port ${env.PORT}`)
-})
