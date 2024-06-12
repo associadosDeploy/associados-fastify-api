@@ -2,7 +2,6 @@ import fastifyCors from '@fastify/cors'
 import fastifySwaggerJwt from '@fastify/jwt'
 import fastifySwagger from '@fastify/swagger'
 import fastifySwaggerUi from '@fastify/swagger-ui'
-// import { env } from '@saas/env'
 import fastify from 'fastify'
 import {
   jsonSchemaTransform,
@@ -10,14 +9,16 @@ import {
   validatorCompiler,
   ZodTypeProvider,
 } from 'fastify-type-provider-zod'
+
+import { errorHandler } from './error-handler'
+import { authenticateWithPassword } from './routes/auth/authenticate-with-password'
+
 import { getFreeAssociates } from './routes/free/get-free-associates'
 import { getFreeAssociate } from './routes/free/get-free-associate'
 import { getFreeCourses } from './routes/free/get-free-courses'
 import { getFreeCourse } from './routes/free/get-free-course'
-import { env } from '../env'
-import { authenticateWithPassword } from './routes/auth/authenticate-with-password'
 import { createUser } from './routes/users/create-user'
-import { errorHandler } from './error-handler'
+import { env } from '@/env'
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -28,8 +29,8 @@ app.setErrorHandler(errorHandler)
 app.register(fastifySwagger, {
   openapi: {
     info: {
-      title: 'API APJESC',
-      description: 'Api do apjesc',
+      title: 'NextJs Saas',
+      description: 'Full-stack SaaS app with multiple-tenent & RBAC',
       version: '1.0.0',
     },
     components: {
@@ -62,3 +63,6 @@ app.register(getFreeCourse)
 
 app.register(authenticateWithPassword)
 app.register(createUser)
+// app.listen({ port: env.PORT }).then(() => {
+//   console.log('Server is listening on port 3333')
+// })
