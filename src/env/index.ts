@@ -15,7 +15,7 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('production'),
   DATABASE_URL: z.string(),
   JWT_SECRET: z.string(),
-  APP_URL: z.string().url(),
+  APP_URL: z.string(),
   PORT: z.number().default(3333),
 })
 
