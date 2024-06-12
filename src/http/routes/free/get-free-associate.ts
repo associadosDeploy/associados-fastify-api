@@ -63,12 +63,7 @@ export async function getFreeAssociate(app: FastifyInstance) {
         throw new BadRequestError('Associate not found')
       }
 
-      return reply.send({
-        ...checkAssociateExists,
-        avatar: checkAssociateExists.avatar
-          ? `${env.APP_URL}/files/${checkAssociateExists.avatar}`
-          : null,
-      })
+      return reply.send(checkAssociateExists)
     },
   )
 }

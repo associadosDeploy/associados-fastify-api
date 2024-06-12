@@ -60,16 +60,7 @@ export async function getFreeAssociates(app: FastifyInstance) {
           valid: 1,
         },
       })
-
-      const formattedAssociates = associates.map((associate) => {
-        return {
-          ...associate,
-          avatar: associate.avatar
-            ? `${env.APP_URL}/files/${associate.avatar}`
-            : null,
-        }
-      })
-      return reply.send(formattedAssociates)
+      return reply.send(associates)
     },
   )
 }

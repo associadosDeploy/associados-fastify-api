@@ -31,15 +31,7 @@ export async function getFreeCourses(app: FastifyInstance) {
     async (request, reply) => {
       const courses = await prisma.course.findMany()
 
-      const formattedCourses = courses.map((course) => {
-        return {
-          ...course,
-          avatar: course.avatar
-            ? `${env.APP_URL}/files/${course.avatar}`
-            : null,
-        }
-      })
-      return reply.send(formattedCourses)
+      return reply.send(courses)
     },
   )
 }

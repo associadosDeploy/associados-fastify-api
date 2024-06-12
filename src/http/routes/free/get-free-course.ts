@@ -42,12 +42,7 @@ export async function getFreeCourse(app: FastifyInstance) {
         throw new BadRequestError('Course not found')
       }
 
-      return reply.send({
-        ...checkCourseExists,
-        avatar: checkCourseExists.avatar
-          ? `${env.APP_URL}/files/${checkCourseExists.avatar}`
-          : null,
-      })
+      return reply.send(checkCourseExists)
     },
   )
 }
