@@ -1,4 +1,4 @@
-import { app } from './http/app'
+import { app } from '@/http/app'
 // import { env } from './env'
 
 app
