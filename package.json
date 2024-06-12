@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "tsx watch src/http/server.ts",
     "lint": "eslint src --ext .ts --fix",
-    "vercel-build": "npx prisma migrate deploy"
+    "build": "tsup src --out-dir build"
   },
   "dependencies": {
     "@fastify/cors": "^9.0.1",
