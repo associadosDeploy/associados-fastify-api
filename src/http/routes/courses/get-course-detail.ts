@@ -3,19 +3,21 @@ import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 
 import { prisma } from '../../../lib/prisma'
 import { env } from '../../../env'
-import { z } from 'zod'
+import z from 'zod'
 import { BadRequestError } from '../_errors/bad-request-error'
+import { auth } from '@/http/middlewares/auth'
 
-export async function getFreeCourse(app: FastifyInstance) {
-  app.withTypeProvider<ZodTypeProvider>().get(
-    '/free/course/:id',
+export async function getCourseDetail(app: FastifyInstance) {
+  app.withTypeProvider<ZodTypeProvider>().register(auth).get(
+    '/courses/:id',
     {
       schema: {
         tags: ['free'],
+        summary: 'Get course details.',
+        security: [{ bearerAuth: [] }],
         params: z.object({
           id: z.string(),
         }),
-        summary: 'Get detail course',
         response: {
           200: z.object({
             id: z.string().uuid(),
@@ -27,6 +29,7 @@ export async function getFreeCourse(app: FastifyInstance) {
             user_id: z.string().nullable(),
             avatar: z.string().nullable(),
           }),
+
         },
       },
     },
@@ -42,12 +45,7 @@ export async function getFreeCourse(app: FastifyInstance) {
         throw new BadRequestError('Course not found')
       }
 
-      return reply.send({
-        ...checkCourseExists,
-        avatar: checkCourseExists.avatar
-          ? `${env.APP_URL}/files/${checkCourseExists.avatar}`
-          : null,
-      })
+      return reply.send(checkCourseExists)
     },
   )
 }

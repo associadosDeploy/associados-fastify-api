@@ -11,14 +11,14 @@ import { hash } from 'bcryptjs'
 export async function createUser(app: FastifyInstance) {
   app
     .withTypeProvider<ZodTypeProvider>()
-    .register(auth)
+    // .register(auth)
     .post(
       '/users',
       {
         schema: {
           tags: ['users'],
           summary: 'Create a new Users',
-          security: [{ bearerAuth: [] }],
+          // security: [{ bearerAuth: [] }],
           body: z.object({
             name: z.string(),
             email: z.string(),
@@ -32,7 +32,7 @@ export async function createUser(app: FastifyInstance) {
         },
       },
       async (request, reply) => {
-        await request.getCurrentUserId()
+        // await request.getCurrentUserId()
 
         const { name, email, password } = request.body
 

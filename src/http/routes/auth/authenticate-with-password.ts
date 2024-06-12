@@ -9,7 +9,7 @@ import { BadRequestError } from '../_errors/bad-request-error'
 
 export async function authenticateWithPassword(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
-    '/sessions',
+    '/session',
     {
       schema: {
         tags: ['auth'],
