@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@fastify/aws-lambda':
+    specifier: ^4.1.0
+    version: 4.1.0
   '@fastify/cors':
     specifier: ^9.0.1
     version: 9.0.1
@@ -265,6 +268,10 @@ packages:
       ajv: 8.16.0
       ajv-formats: 2.1.1(ajv@8.16.0)
       fast-uri: 2.4.0
+    dev: false
+
+  /@fastify/aws-lambda@4.1.0:
+    resolution: {integrity: sha512-293HSdtr4muZZi4UxjrDgddxlLRDbNxT5x/eOX78obMA1Du3tfpuP7WuyfnA4GXaeckj/soJ2jiuD2sM4VIW9Q==}
     dev: false
 
   /@fastify/busboy@2.1.1:
