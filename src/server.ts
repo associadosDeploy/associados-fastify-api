@@ -6,7 +6,7 @@ function init() {
 }
 
 if (require.main === module) {
-  init().listen({ port: env.PORT }).then(() => {
+  init().listen({ port: 3333 }).then(() => {
     console.log('HTTP server listening')
   })
 } else {
